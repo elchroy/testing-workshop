@@ -12,4 +12,8 @@ module.exports = {
     // and use this to resolve if the css files aren't being loaded at all
     '\\.css$': require.resolve('./test/style-mock'),
   },
+
+  // we need to setup support for localstorage in node, by using the setup-test-framework function
+  setupTestFrameworkScriptFile: require.resolve('./test/setup-test-framework'),
+  // but this is deprecated in favour of 'setupFilesAfterEnv'. Also check out setupFiles (which is an array)
 }

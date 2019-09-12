@@ -10,7 +10,9 @@ module.exports = {
     'syntax-dynamic-import',
     'transform-class-properties',
     'transform-object-rest-spread',
-  ],
+
+    isTest ? 'dynamic-import-node' : null,
+  ].filter(Boolean),
 }
 
 /*
