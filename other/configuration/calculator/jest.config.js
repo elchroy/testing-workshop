@@ -16,4 +16,18 @@ module.exports = {
   // we need to setup support for localstorage in node, by using the setup-test-framework function
   setupTestFrameworkScriptFile: require.resolve('./test/setup-test-framework'),
   // but this is deprecated in favour of 'setupFilesAfterEnv'. Also check out setupFiles (which is an array)
+
+  // this will only collect coverage from the src directory
+  collectCoverageFrom: ['**/src/**/*.js'],
+  // there is also a blacklist version of this that exclude the tests by default as well
+
+  // here we don't want to test coverage to get below a certain level/threshold
+  coverageThreshold: {
+    global: {
+      statements: 20,
+      branches: 10,
+      functions: 20,
+      lines: 21,
+    },
+  },
 }
