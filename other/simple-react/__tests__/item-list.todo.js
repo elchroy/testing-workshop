@@ -1,11 +1,37 @@
+import React from 'react'
+import {render} from 'react-dom'
+import ItemList from '../item-list'
+
 // Your job:
 // Test the case where the items provided is empty:
 //   <ItemList items={[]} />
+
+test('renders "no items" when no items are given', () => {
+  // arrange
+  const container = document.createElement('div')
+
+  // actions
+  render(<ItemList items={[]} />, container)
+
+  // assertions
+  expect(container.textContent).toMatch('no items')
+})
+
 // Test the case where there are items in the list:
 //   <ItemList items={['apple', 'orange', 'pear']} />
 //
 // Don't overthink it. This is just a practice run to warm you up
 // to testing react components.
+
+test('renders an unordered list of items, based on the given items', () => {
+  const container = document.createElement('div')
+
+  render(<ItemList items={['apple', 'orange', 'pear']} />, container)
+
+  expect(container.textContent).toMatch('apple')
+  expect(container.textContent).toMatch('orange')
+  expect(container.textContent).toMatch('pear')
+})
 
 // So you can use JSX (which transpiles down to React.createElement):
 // import React from 'react'
