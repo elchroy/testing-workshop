@@ -25,8 +25,10 @@ test('calls onSubmit with the username and password when submitted', () => {
   expect(handleSubmit).toHaveBeenCalledWith(fakeUser)
 })
 
-test('snapshot', () => {
+test.only('snapshot', () => {
   // render the login, this will give you back an object with a `container` property
+  const {container} = render(<Login />)
+  expect(container.firstChild).toMatchSnapshot()
   // expect the `container` property to match a snapshot
 })
 
