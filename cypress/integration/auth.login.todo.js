@@ -6,7 +6,10 @@
 import {generate} from '../utils'
 
 describe('authentication', () => {
-  beforeEach(() => cy.logout())
+  beforeEach(() => {
+    cy.logout()
+    // .createNewUser()
+  })
 
   it('should allow existing users to login', () => {
     // you'll want to first create a new user.
@@ -15,6 +18,20 @@ describe('authentication', () => {
     //   more cy commands here
     // })
     //
+    cy.createNewUser().then(user => {
+      cy.visit('/')
+        .getByText(/login/i)
+        .click()
+        .getByLabelText(/Username/i)
+        .type(user.username)
+        .getByLabelText(/password/i)
+        .type(user.password)
+        .getByText(/submit/i)
+        .click()
+        .assertRoute('/')
+
+      cy.getByTestId('username-display').should('contain', user.username)
+    })
     // With the user created, go ahead and use the cy commands to:
     // 1. visit the app: visitApp
     // 2. Click the login link
